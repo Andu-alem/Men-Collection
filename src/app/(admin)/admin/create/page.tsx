@@ -70,7 +70,7 @@ export default function Page() {
             method: "POST",
             body: formData
         })
-        console.log("The response is ---- ", response)
+        console.log("The response is ---- ", await response.json())
     }
 
     const imageHandler = (file:File ) => {
