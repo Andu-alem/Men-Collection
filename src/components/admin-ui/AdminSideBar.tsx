@@ -46,13 +46,13 @@ const AdminSidebar = async () => {
                                     </SidebarMenuItem>
                                     <SidebarMenuItem>
                                         <Collapsible>
-                                            <SidebarMenuButton>
-                                                <CollapsibleTrigger>
-                                                    Category
+                                            <SidebarMenuButton className="w-full" asChild>
+                                                <CollapsibleTrigger className="border border-red-300 flex justify-between">
+                                                    <span className="text-[17px] text-gray-300">Category</span>
                                                     <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180 text-gray-400" />
                                                 </CollapsibleTrigger>
                                             </SidebarMenuButton>
-                                            <CollapsibleContent className="flex flex-col justify-center items-center">
+                                            <CollapsibleContent className="flex flex-col justify-center items-center" asChild>
                                                 <Input className="w-[75%] my-2 py-0" type="text" placeholder="add category" />
                                                 <Button className="h-7 px-2 bg-zinc-700">Create</Button>
                                             </CollapsibleContent>

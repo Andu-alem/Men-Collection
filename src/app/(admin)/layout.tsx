@@ -32,7 +32,7 @@ export default function Layout({ children }:{ children:React.ReactNode }) {
     }
 
     return (
-        <main className="h-screen w-screen flex flex-col justify-center items-center">
+        <main className="h-screen w-full flex flex-col justify-center items-center">
             <div className="flex justify-center items-center mb-7">
                 <Link className="text-[40px] font-bold text-zinc-700" href="/products">Men's Collection</Link>
             </div>

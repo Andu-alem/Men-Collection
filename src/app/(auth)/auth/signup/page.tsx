@@ -3,9 +3,9 @@ import { authClient } from "@/lib/auth-client"
 import { useState } from 'react'
 import { useRouter, useSearchParams } from "next/navigation"
 import Link from "next/link"
+import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -17,31 +17,7 @@ import {
     FormItem
 } from "@/components/ui/form"
 import { EyeIcon, EyeOffIcon } from "lucide-react";
-
-const formSchema = z.object({
-    name: z.string().min(1,{
-               message: "Username is required." 
-            }),
-    email: z.string()
-            .min(1,{
-                message: "Email is required.",
-            })
-            .email({
-                message: "Please provide a valid email."
-            }),
-    password: z.string()
-                .min(5,{
-                    message: "The password is required and must be minimum 5 character."
-                }),
-    confirmPassword: z.string({
-                message: "Confirm password is required."
-            }).min(5, {
-                message: "Must be greater than 5 characters."
-            })
-}).refine(data => data.password === data.confirmPassword, {
-    message: "Password didn't match.",
-    path: ["confirmPassword"],
-})
+import { signupSchema } from "@/lib/form-schemas"
 
 export default function Page() {
     const searchParams = useSearchParams()
@@ -49,8 +25,8 @@ export default function Page() {
     const router = useRouter()
     const [sending, setSending] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<z.infer<typeof signupSchema>>({
+        resolver: zodResolver(signupSchema),
         defaultValues: {
           name: "",
           email: "",
@@ -59,7 +35,7 @@ export default function Page() {
         }
     })
 
-    const submitHandler = async (formData: z.infer<typeof formSchema>) => {
+    const submitHandler = async (formData: z.infer<typeof signupSchema>) => {
         const { name, email, password } = formData
         const { data, error } = await authClient.signUp.email({ 
           email, 
