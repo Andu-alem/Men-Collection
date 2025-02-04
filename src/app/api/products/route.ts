@@ -2,6 +2,7 @@ import { PrismaClient } from "@prisma/client"
 import { NextRequest, NextResponse } from "next/server"
 import fs from 'fs'
 import path from 'path'
+import { put } from '@vercel/blob'
 
 export async function GET(request: NextRequest) {
     try {
@@ -79,8 +80,10 @@ export async function POST(request:NextRequest) {
         const quantity = parseInt(formData.get("quantity") as string)
         const image = formData.get("image") as File
 
-        const imagePath = await upload(image)
-        console.log("The file path is ---- ", imagePath)
+        //put the image file in vercel blob store and get url
+        const fileName = `${Date.now()}-${image.name}`
+        const blob = await put(`products/${fileName}`, image, { access: 'public'})
+        const url = blob.url
 
         const prisma = new PrismaClient()
 
@@ -91,12 +94,12 @@ export async function POST(request:NextRequest) {
                 description,
                 price,
                 quantity,
-                imagePath
+                imagePath: url
             }
         })
 
         return NextResponse.json({
-            product: product
+            product: product,
         },{
             status: 201
         })
