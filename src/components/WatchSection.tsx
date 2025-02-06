@@ -10,7 +10,7 @@ const WatchSection = () => {
             <motion.p
                 className="text-[30px] md:text-[35px] text-center w-full mx-auto sm:w-1/2 text-white"
                 initial={{
-                    y: 250,
+                    y: 100,
                     opacity: 0
                 }}
                 whileInView={{
@@ -18,8 +18,8 @@ const WatchSection = () => {
                     opacity: 1
                 }}
                 transition={{
-                    delay: 0.3,
-                    duration: 0.7
+                    delay: 0.2,
+                    duration: 1
                 }}
             >
                 <span className="text-orange-500 text-[40px] md:text-[75px] font-bold">Count your happiness</span> <br /> with our lexury watch.
@@ -27,14 +27,14 @@ const WatchSection = () => {
             <motion.div 
                 className="border border-white my-5 sm:my-0 relative w-[330px] md:w-[450px] h-[50vh] sm:h-[75vh]"
                 style={{
-                    skewX: useTransform(scrollYProgress, [0, 1], [17, -17]),
+                    skewX: useTransform(scrollYProgress, [0, 1], [15, -15]),
                     opacity: 1
                 }}
             >
                 <Image 
                     className="absolute" 
                     fill={ true }
-                    src="/watch-1.jpg" 
+                    src="/background/watch-1.jpg" 
                     alt="watch" />
             </motion.div>
         </div>

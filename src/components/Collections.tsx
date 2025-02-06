@@ -1,5 +1,4 @@
 'use client'
-import { motion } from 'framer-motion'
 import Image from 'next/image'
 import FadeInAnimation from './FadeInAnimation'
 import TranslateAnimation from './TranslateAnimation'
@@ -10,29 +9,29 @@ const Collections = () => {
             <div className="flex gap-10">
                 <TranslateAnimation
                     className="relative flex-grow h-[250px]"
-                    duration={ 1 }
+                    duration={ 0.7 }
                 >
                     <Image
                         className="rounded-lg absolute border border-white"
-                        src="/snicker.jpeg"
+                        src="/background/snicker.jpeg"
                         alt='snicker'
                         fill= { true }
                     />
                 </TranslateAnimation>
                 <TranslateAnimation
                     className="relative flex-grow h-[250px]"
-                    duration={ 2 }
+                    duration={ 1 }
                 >
                     <Image
                         className="rounded-lg absolute border border-white"
-                        src="/shirt.jpg"
+                        src="/background/shirt.jpg"
                         alt='shirt'
                         fill={ true }
                     />
                 </TranslateAnimation>
             </div>
             <FadeInAnimation 
-                className="my-3 flex justify-center text-orange-500 text-[30px] sm:text-[45px]"
+                className="my-3 flex justify-center text-orange-500 text-[30px] md:text-[45px]"
                 duration={ 1.5 }
             >
                 <p>More collections on our <span className="text-white font-bold">store.</span></p>
@@ -40,22 +39,22 @@ const Collections = () => {
             <div className="flex my-2 gap-10">
                 <TranslateAnimation
                     className="relative flex-grow h-[250px]"
-                    duration={ 1 }
+                    duration={ 0.7 }
                 >
                     <Image
                         className="rounded-lg absolute border border-white"
-                        src="/watches.jpg"
+                        src="/background/watches.jpg"
                         alt='watches'
                         fill= { true }
                     />
                 </TranslateAnimation>
                 <TranslateAnimation
                     className="relative flex-grow h-[250px]"
-                    duration={ 2 }
+                    duration={ 1 }
                 >
                     <Image
                         className="rounded-lg absolute border border-white"
-                        src="/perfume2.jfif"
+                        src="/background/perfume2.jfif"
                         alt='perfume'
                         fill={ true }
                     />

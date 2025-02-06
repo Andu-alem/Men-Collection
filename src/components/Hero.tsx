@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Button } from './ui/button'
 
@@ -11,7 +12,7 @@ const Hero = () => {
     }
     return (
         <div>
-            <div className="w-full h-screen mx-auto bg-[url('/bg3.jpg')] bg-cover fixed -z-50"></div>
+            <div className="w-full h-screen mx-auto bg-[url('/background/bg3.jpg')] bg-cover fixed -z-50"></div>
             <div className="h-screen w-full bg-gradient-to-l from-black via-transparent-50 to-transparent -z-50 fixed top-0"></div>
             <div className="h-[100vh] flex justify-center items-center">
                 <div className="w-11/12 md:w-2/3 flex flex-col items-center gap-5">
@@ -30,7 +31,7 @@ const Hero = () => {
                         Be Fashionable.
                     </motion.h3>
                     <motion.p 
-                        className="text-rose-200 text-[20px] text-center"
+                        className="text-gray-50 text-[20px] text-center"
                         initial={{
                             translateX: -50,
                             opacity: 0
@@ -41,7 +42,9 @@ const Hero = () => {
                         }}
                         transition={ transition }
                     >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloremque dolorem fugit quidem natus exercitationem unde, cupiditate ipsam iusto itaque nam, suscipit cumque laborum porro sunt minima dignissimos impedit. Non, quisquam?</motion.p>
-                    <Button variant="secondary">Shop Now</Button>
+                    <Button variant="secondary" asChild>
+                        <Link href="/products">Shop Now</Link>
+                    </Button>
                 </div>
             </div>
         </div>

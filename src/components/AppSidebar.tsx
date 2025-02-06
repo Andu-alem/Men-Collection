@@ -1,3 +1,5 @@
+import Link from "next/link"
+import { getAllCategories } from "@/lib/queries"
 import {
     Sidebar,
     SidebarHeader,
@@ -9,11 +11,9 @@ import {
     SidebarGroupLabel,
     SidebarGroupContent,
 } from "@/components/ui/sidebar"
-import { Progress } from "./ui/progress"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible"
 import { ChevronDown } from "lucide-react"
-import Link from "next/link"
-import { getAllCategories } from "@/lib/queries"
+import PriceRangeSlider from "./PriceRangeSlider"
 
 
 const AppSidebar = async () => {
@@ -25,12 +25,7 @@ const AppSidebar = async () => {
                 Additional Filters
             </SidebarHeader>
             <SidebarContent>
-                <SidebarGroup>
-                    <SidebarGroupLabel>By price range</SidebarGroupLabel>
-                    <SidebarGroupContent>
-                        <Progress value={ 40 } />
-                    </SidebarGroupContent>
-                </SidebarGroup>
+                <PriceRangeSlider />
                 <Collapsible defaultOpen className="group/collapsible">
                     <SidebarGroup>
                         <SidebarGroupLabel asChild>
