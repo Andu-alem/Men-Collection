@@ -25,14 +25,14 @@ import {
     SelectValue
 } from "@/components/ui/select"
 import { useEffect, useState } from "react"
-import { getCategories } from "@/lib/api-queries"
+import { getAllCategories } from "@/lib/queries"
+import { addProduct } from "@/lib/actions"
 import Image from "next/image"
 
 type Category = {
     id: number,
     name: string
 }
-
 export default function Page() {
     const [categories, setCategories] = useState<Category[]>([])
     const [imageSrc, setImageSrc] = useState<string|null>(null)
@@ -44,14 +44,15 @@ export default function Page() {
           price: '0',
           quantity: '0',
           category: "",
-          image: new File([], 'x')
+          image: new File([], 'place-holder')
         }
     })
+    const [errorOccured, setErrorOccured] = useState(false)
 
     useEffect(() => {
         async function getData () {
-            const response = await getCategories()
-            if (response) {
+            const response = await getAllCategories()
+            if (response.categories) {
                 setCategories(response.categories)
             }
         }
@@ -59,18 +60,17 @@ export default function Page() {
     },[])
 
     const submitHandler = async (data: z.infer<typeof productSchema>) => {
-        console.log("Form data is ", data)
         const formData = new FormData()
         for (const key in data) {
             if (Object.prototype.hasOwnProperty.call(data, key)) {
                 formData.append(key, data[key as keyof z.infer<typeof productSchema>]) 
             }
         }
-        const response = await fetch('http://localhost:3000/api/products', {
-            method: "POST",
-            body: formData
-        })
-        console.log("The response is ---- ", await response.json())
+        const { error } = await addProduct(formData)
+        if (error) {
+            setErrorOccured(true)
+            setTimeout(()=>setErrorOccured(false), 5000)
+        }
     }
 
     const imageHandler = (file:File ) => {
@@ -83,7 +83,7 @@ export default function Page() {
     
     
     return (
-        <div className="w-4/5 sm:w-1/2 lg:w-2/5 mx-auto">
+        <div className="w-4/5 sm:w-1/2 lg:w-3/5 mx-auto">
         <Form { ...form }>
             <form onSubmit={form.handleSubmit(submitHandler)} className="space-y-4 border border-zinc-300 rounded-lg p-7">
                 <FormField
@@ -176,7 +176,7 @@ export default function Page() {
                                     </div>
                                 )
                             }
-                            <FormLabel htmlFor="image" className="border border-zinc-400 rounded-lg p-2 text-zinc-700 my-2">Pick product image</FormLabel>
+                            <FormLabel htmlFor="image" className="border border-zinc-400 rounded-lg p-2 text-zinc-700 my-2 cursor-pointer">Pick product image</FormLabel>
                             <FormControl>
                                 <Input 
                                     className="hidden"
@@ -201,6 +201,7 @@ export default function Page() {
                 <div className="flex justify-center">
                   <Button className={`h-7`} type="submit">SUBMIT</Button>
                 </div>
+                { errorOccured && <p className="text-[15px] text-red-400">Error occured while submiting a product. Please try again.</p> }
             </form>
         </Form>
       </div>

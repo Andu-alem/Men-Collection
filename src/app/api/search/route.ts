@@ -9,16 +9,24 @@ export async function GET(request: NextRequest) {
         let limit = 10
         const url = new URL(request.url)
         const page = url.searchParams.get("page")
+        const name = url.searchParams.get("name")
+        if (!name) throw new Error("No search parameter")
         if (page) {
             currentPage = parseInt(page)
             offset = (currentPage-1) * limit
         }
         const prisma = new PrismaClient()
         const products = await prisma.product.findMany({
+            where: {
+                name: {
+                    contains: name,
+                    mode: 'insensitive'
+                }
+            },
             skip: offset,
             take: limit,
         })
-
+        
         const totalProducts = await prisma.product.count()
         const totalPages = Math.ceil(totalProducts/10)
         const hasNext = currentPage < totalPages

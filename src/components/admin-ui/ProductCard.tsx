@@ -10,7 +10,6 @@ import {
 import { Button } from '../ui/button'
 import { MoreHorizontal } from 'lucide-react'
 import { Product } from '@/lib/types'
-import AddToCart from '../AddToCart'
 import DeleteProduct from './DeleteProduct'
 
 
@@ -28,20 +27,22 @@ const ProductCard = ({ product }:{ product: Product }) => {
                         fill={ true }
                     />
                 </div>
-                <CardTitle className="my-2 text-zinc-700">
+                <CardTitle className="my-2 text-zinc-700 capitalize">
                     { name }
                 </CardTitle>
                 <p className="text-[15px] text-zinc-700">Price : { price }ETB</p>
-                <p className="text-[15px] text-zinc-700">Quantity: { quantity }</p>
+                <p className="text-[15px] text-zinc-700">In stock: { quantity }</p>
             </CardContent>
             <CardFooter className="border-t border-gray-300 py-2 px-3 flex justify-evenly">
-                <AddToCart product={ product } />
-                <Button className="cursor-pointer" variant="link" asChild>
+                <Button className="text-[15px] border-zinc-400 h-7 px-1 sm:px-3 hover:text-orange-500" variant="outline" asChild>
+                    <Link href="#">Update</Link>
+                </Button>
+                <Button className="cursor-pointer px-1 sm:px-3 hover:text-orange-500" variant="link" asChild>
                     <Link href={`/admin/product/${id}`}>
                         <MoreHorizontal />
                     </Link>
                 </Button>
-                <DeleteProduct />
+                <DeleteProduct id={ id } />
             </CardFooter>
         </Card>
     )

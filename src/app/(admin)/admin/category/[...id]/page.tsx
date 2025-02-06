@@ -1,19 +1,19 @@
-import ProductCard from "@/components/ProductCard"
-import PaginationSection from "@/components/PaginationSection"
+import AdminHeader from "@/components/admin-ui/AdminHeader"
+import ProductCard from "@/components/admin-ui/ProductCard"
 import { Product } from "@/lib/types"
-import { getAllProducts } from "@/lib/queries"
+import { getProductsByCategory } from "@/lib/queries"
 
-interface SearchParams {
-    name?: string,
-    page?: string
+interface Params {
+    id: string[]
 }
 
-export default async function Page({ searchParams }:{ searchParams:Promise<SearchParams> }) {
-    const { page, name } = await searchParams
-    const { error, products, meta } = await getAllProducts(page , name)
+export default async function Page({ params }:{ params:Promise<Params> }) {
+    const { id } = await params
+    const { error, products } = await getProductsByCategory(id[0])
     
     return (
-        <div className="w-full flex flex-col items-center gap-5">
+        <div className="w-full flex flex-col items-center gap-5 sm:py-5">
+            <AdminHeader />
             {
                 error ? (
                     <div>No products found</div>
@@ -26,7 +26,6 @@ export default async function Page({ searchParams }:{ searchParams:Promise<Searc
                                 ))
                             }
                         </div>
-                        { meta && <PaginationSection meta={ meta } />}
                     </>
                 )
             }

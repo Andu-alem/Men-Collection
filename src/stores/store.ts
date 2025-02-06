@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { type Product } from '@/lib/types'
 
-type CartItem = {
+export type CartItem = {
     product: Product,
     quantity: number
 }
@@ -16,6 +16,7 @@ type Actions = {
     addProduct: (product:Product) => void,
     removeProduct: (id:number) => void,
     decrementQuantity: (id:number) => void,
+    reset: () => void
 }
 
 export const useCartStore = create<States&Actions>((set, get) => ({
@@ -40,6 +41,11 @@ export const useCartStore = create<States&Actions>((set, get) => ({
         cart: decrement(id, state.cart),
         totalItems: state.totalItems - 1,
         totalPrice: state.totalPrice - getPrice(id, state.cart)
+    })),
+    reset: () => set((state) => ({
+        cart: [],
+        totalItems: 0,
+        totalPrice: 0
     }))
 }))
 

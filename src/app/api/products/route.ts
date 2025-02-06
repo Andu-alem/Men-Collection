@@ -81,9 +81,10 @@ export async function POST(request:NextRequest) {
         const image = formData.get("image") as File
 
         //put the image file in vercel blob store and get url
-        const fileName = `${Date.now()}-${image.name}`
-        const blob = await put(`products/${fileName}`, image, { access: 'public'})
-        const url = blob.url
+        //const fileName = `${Date.now()}-${image.name}`
+        //const blob = await put(`products/${fileName}`, image, { access: 'public'})
+        //const url = blob.url
+        const imagePath = await upload(image)
 
         const prisma = new PrismaClient()
 
@@ -94,7 +95,7 @@ export async function POST(request:NextRequest) {
                 description,
                 price,
                 quantity,
-                imagePath: url
+                imagePath
             }
         })
 
