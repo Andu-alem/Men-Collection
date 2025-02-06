@@ -1,4 +1,4 @@
-import { getCategories } from "@/lib/api-queries"
+import { getAllCategories } from "@/lib/queries"
 import {
     Sidebar,
     SidebarHeader,
@@ -10,25 +10,22 @@ import {
     SidebarGroupLabel,
     SidebarGroupContent,
 } from "@/components/ui/sidebar"
-import { Button } from "../ui/button"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "../ui/collapsible"
 import { ChevronDown } from "lucide-react"
 import Link from "next/link"
-import { Input } from "../ui/input"
+import AddCategory from "./AddCategory"
+import AdminSidebarHeader from "./AdminSidebarHeader"
 
 const AdminSidebar = async () => {
-    const { categories } = await getCategories()
+    const { categories } = await getAllCategories()
 
     return (
         <Sidebar className="top-0 bg-zinc-900 text-gray-200">
             <SidebarHeader>
-                <div className="flex justify-between pr-1">
-                    <span className="font-bold">Men's Collection</span>
-                    <Button className="text-[15px] h-7 bg-zinc-700">LOGOUT</Button>
-                </div>
+                <AdminSidebarHeader />
             </SidebarHeader>
             <SidebarContent className="scrollbar-hide">
-                <Collapsible defaultOpen className="group/collapsible">
+                <Collapsible className="group/collapsible">
                     <SidebarGroup>
                         <SidebarGroupLabel asChild>
                             <CollapsibleTrigger>
@@ -52,9 +49,8 @@ const AdminSidebar = async () => {
                                                     <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180 text-gray-400" />
                                                 </CollapsibleTrigger>
                                             </SidebarMenuButton>
-                                            <CollapsibleContent className="flex flex-col justify-center items-center" asChild>
-                                                <Input className="w-[75%] my-2 py-0" type="text" placeholder="add category" />
-                                                <Button className="h-7 px-2 bg-zinc-700">Create</Button>
+                                            <CollapsibleContent>
+                                                <AddCategory />
                                             </CollapsibleContent>
                                         </Collapsible>
                                     </SidebarMenuItem>
@@ -75,7 +71,7 @@ const AdminSidebar = async () => {
                             <SidebarGroupContent>
                                 <SidebarMenu>
                                     {
-                                        categories.map((category:any) => (
+                                        categories?.map((category:any) => (
                                             <SidebarMenuItem key={ category.id }>
                                                 <SidebarMenuButton className="text-[17px]">{ category.name }</SidebarMenuButton>
                                             </SidebarMenuItem>

@@ -25,7 +25,7 @@ export default function Header() {
                 <div className="flex items-center gap-3">
                     <Link href="/cart" className="relative">
                         <ShoppingCart className="text-orange-500 font-bold" size="32" />
-                        {  totalItems > 0 && <Badge className="absolute top-0 right-0 z-50 text-[11px] rounded-full py-0 px-[3px] bg-green-500">{ totalItems }</Badge>}
+                        {  totalItems > 0 && <Badge className="absolute top-0 right-0 z-50 text-[11px] rounded-full py-0 px-1 bg-black">{ totalItems }</Badge>}
                     </Link>
                     {
                         isPending ? (

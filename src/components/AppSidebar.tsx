@@ -13,11 +13,11 @@ import { Progress } from "./ui/progress"
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible"
 import { ChevronDown } from "lucide-react"
 import Link from "next/link"
-import { getCategories } from "@/lib/api-queries"
+import { getAllCategories } from "@/lib/queries"
 
 
 const AppSidebar = async () => {
-    const { categories } = await getCategories()
+    const { categories } = await getAllCategories()
 
     return (
         <Sidebar side="right" className="top-[70px]">
@@ -43,10 +43,10 @@ const AppSidebar = async () => {
                             <SidebarGroupContent>
                                 <SidebarMenu>
                                     {
-                                        categories.map((category:any, index:number) => (
+                                        categories?.map((category:any, index:number) => (
                                             <SidebarMenuItem key={ index }>
                                                 <SidebarMenuButton>
-                                                    <Link href="#">{ category.name }</Link>
+                                                    <Link href={`/products/category/${category.id}`}>{ category.name }</Link>
                                                 </SidebarMenuButton>
                                             </SidebarMenuItem>
                                         ))

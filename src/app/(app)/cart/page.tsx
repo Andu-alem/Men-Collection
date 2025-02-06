@@ -1,4 +1,5 @@
 'use client'
+import { useState } from "react"
 import Link from "next/link"
 import { authClient } from "@/lib/auth-client"
 import CartItem from "@/components/CartItem"
@@ -7,17 +8,28 @@ import { Button } from "@/components/ui/button"
 import { useCartStore } from "@/stores/store"
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert"
 import { AlertCircle } from "lucide-react"
-
+import { addOrder } from "@/lib/actions"
 
 export default function Page() {
     const { isPending, data } = authClient.useSession()
     const state = useCartStore()
+    const [error, setError] = useState(false)
 
-    
+    const handleSubmit = async () => {
+        const cart = state.cart
+        if (cart.length < 1) return
+        const response = await addOrder(cart)
+        if (response.error) {
+            setError(true)
+        } else {
+            state.reset()
+        }
+    }
+
     return (
         <div className="flex flex-col gap-2 w-11/12 md:w-7/12 lg:w-5/12 mt-3 mb-5">
             <div className="text-center">
-                <h3 className="font-bold text-xl my-2 border-b border-zinc-300">Products in Cart</h3>
+                <h3 className="font-bold text-xl my-2 border-b border-zinc-300 pb-3 text-zinc-700">Products in Cart</h3>
             </div>
             <ScrollArea className="h-[70vh]">
                 {
@@ -54,9 +66,10 @@ export default function Page() {
                         <span>{ (state.totalPrice + (state.totalPrice * 0.15)).toFixed(3) }</span>
                     </div>
                 </div>
-                <Button className={`text-[17px] ${ (isPending || !data) ? 'opacity-50':'opacity-100' }`} disabled={ isPending || !data }>Put Order</Button>
+                { error && <p className="my-2 px-4 text-[15px] text-red-400 font-semibold">Error occured while submiting your order. Please try again.</p> }
+            <Button className={`text-[17px] ${ (isPending || !data) ? 'opacity-50':'opacity-100' }`} disabled={ isPending || !data } onClick={ handleSubmit }>Put Order</Button>
                 {
-                    (!isPending && data) && <div className="text-[15px] text-zinc-500 my-2">You must <Link className="text-blue-500 font-bold" href="/auth/login?callback=/cart">Login</Link> to make orders.</div>
+                    (!isPending && !data) && <div className="text-[15px] text-zinc-500 my-2">You must <Link className="text-blue-500 font-bold" href="/auth/login?callback=/cart">Login</Link> to make orders.</div>
                 }
             </div>
         </div>

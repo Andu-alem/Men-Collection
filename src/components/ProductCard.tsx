@@ -17,26 +17,26 @@ const ProductCard = ({ product }:{ product: Product }) => {
     const { id, name, imagePath, price, quantity } = product
 
     return (
-        <Card className="border-zinc-200 shadow-none">
+        <Card className="border-none">
             <CardContent className='p-2'>
-                <div className="relative w-full h-[150px]">
+                <div className="relative w-full h-[175px]">
                     <Image
-                        className="absolute"
+                        className="absolute rounded-md"
                         src={imagePath}
                         alt="product"
                         fill={ true }
                     />
                 </div>
-                <CardTitle className="my-2 text-zinc-700">
+                <CardTitle className="mt-2 text-zinc-700 text-[17px] capitalize">
                     { name }
                 </CardTitle>
                 <p className="text-[15px] text-zinc-700">Price : { price }ETB</p>
                 <p className="text-[15px] text-zinc-700">Quantity: { quantity }</p>
             </CardContent>
-            <CardFooter className="border-t border-gray-300 py-2 px-3 flex justify-evenly">
+            <CardFooter className="pb-2 px-3 flex justify-between border-t border-gray-200">
                 <AddToCart product={ product } />
                 <Button className="cursor-pointer" variant="link" asChild>
-                    <Link href={`/product/${id}`}>
+                    <Link className="hover:text-orange-500" href={`/product/${id}`}>
                         <MoreHorizontal />
                     </Link>
                 </Button>
