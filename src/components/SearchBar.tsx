@@ -18,11 +18,11 @@ export default function Search() {
         <div className="flex items-center gap-2">
             <Input 
                 type="search" 
-                className="text-[13px] border-zinc-300" 
+                className="text-[13px] border-zinc-300 h-7" 
                 placeholder="Search by name"
                 onChange={ (e) => setSearchParam(e.target.value)}
             />
-            <SearchIcon size="30" className="cursor-pointer hover:text-orange-500" onClick={ handleSeaarch } />
+            <SearchIcon size="27" className="cursor-pointer hover:text-orange-500" onClick={ handleSeaarch } />
         </div>
     )
 }

@@ -3,25 +3,7 @@ import { redirect } from "next/navigation"
 import { revalidatePath } from "next/cache"
 import { PrismaClient } from "@prisma/client"
 import { put } from "@vercel/blob"
-import path from "path"
-import fs from 'fs'
 import { CartItem } from "@/stores/store"
-
-async function upload(file:File): Promise<string> {
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads')
-    if (!fs.existsSync(uploadDir)) {
-        fs.mkdirSync(uploadDir,{
-            recursive: true
-        })
-    }
-    const fileName = `${Date.now()}-${file.name}`
-    const filePath = path.join(uploadDir, fileName)
-
-    const buffer = Buffer.from(await file.arrayBuffer())
-    fs.writeFileSync(filePath, buffer)
-
-    return `/uploads/${fileName}`
-}
 
 export const addProduct = async (formData:FormData) => {
     let productId:number;
@@ -35,10 +17,10 @@ export const addProduct = async (formData:FormData) => {
         const image = formData.get("image") as File
 
         //put the image file in vercel blob store and get url
-        //const fileName = `${Date.now()}-${image.name}`
-        //const blob = await put(`products/${fileName}`, image, { access: 'public'})
-        //const url = blob.url
-        const imagePath = await upload(image)
+        const fileName = `${Date.now()}-${image.name}`
+        const blob = await put(`products/${fileName}`, image, { access: 'public'})
+        const url = blob.url
+        //const imagePath = await upload(image)
 
         const product = await prisma.product.create({
             data: {
@@ -47,7 +29,7 @@ export const addProduct = async (formData:FormData) => {
                 description,
                 price,
                 quantity,
-                imagePath
+                imagePath: url
             }
         })
         productId = product.id
@@ -114,13 +96,12 @@ export const updateCategory = async () => {
 }
 
 
-export const addOrder = async (cart:CartItem[]) => {
+export const addOrder = async (cart:CartItem[], userId:string) => {
     const prisma = new PrismaClient()
     try {
-        //console.log("Cart data is ---- ", cart)
         const order = await prisma.order.create({
             data: {
-                userId: '93riccZajXA8gICCsnLlfgGk29PFzj',
+                userId,
                 products: {
                     create: cart.map((item) => ({
                         productId: item.product.id,

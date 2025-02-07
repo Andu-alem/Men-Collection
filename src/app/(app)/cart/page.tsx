@@ -22,7 +22,8 @@ export default function Page() {
         if (cart.length < 1) return
 
         setSending(true)
-        const response = await addOrder(cart)
+        const userId = data ? data.user.id:''
+        const response = await addOrder(cart, userId)
         if (response.error) {
             setError(true)
             toast("Failed to submit your order.")
@@ -38,10 +39,10 @@ export default function Page() {
             <div className="text-center">
                 <h3 className="font-bold text-xl my-2 border-b border-zinc-300 pb-3 text-zinc-700">Products in Cart</h3>
             </div>
-            <ScrollArea className="h-[70vh]">
+            <ScrollArea className="max-h-[70vh]">
                 {
                     state.cart.length < 1 ? (
-                        <div className="w-full h-[70vh] flex justify-center items-center">
+                        <div className="w-full min-h-[40vh] max-h-[70vh] flex justify-center items-center">
                             <Alert variant="destructive" className="text-center">
                                 <AlertTitle className="flex justify-center items-center gap-2">
                                     <AlertCircle className="text-red-500 -mt-[2px]" />
@@ -74,7 +75,7 @@ export default function Page() {
                     </div>
                 </div>
                 { error && <p className="my-2 px-4 text-[15px] text-red-400 font-semibold">Error occured while submiting your order. Please try again.</p> }
-            <Button className={`text-[17px] ${ (isPending || !data) ? 'opacity-50':'opacity-100'} ${ sending ? 'animate-pulse':'animate-pulse' }`} disabled={ isPending || !data } onClick={ handleSubmit }>Put Order</Button>
+            <Button className={`text-[17px] ${ (isPending || !data) ? 'opacity-50':'opacity-100'} ${ sending ? 'animate-pulse':'animate-none' }`} disabled={ isPending || !data } onClick={ handleSubmit }>Put Order</Button>
                 {
                     (!isPending && !data) && <div className="text-[15px] text-zinc-500 my-2">You must <Link className="text-blue-500 font-bold" href="/auth/login?callback=/cart">Login</Link> to make orders.</div>
                 }

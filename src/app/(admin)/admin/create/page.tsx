@@ -26,6 +26,7 @@ import { useEffect, useState } from "react"
 import { getAllCategories } from "@/lib/queries"
 import { addProduct } from "@/lib/actions"
 import Image from "next/image"
+import { toast } from 'sonner';
 
 type Category = {
     id: number,
@@ -66,6 +67,7 @@ export default function Page() {
         }
         const { error } = await addProduct(formData)
         if (error) {
+            toast("Failed to create product.")
             setErrorOccured(true)
             setTimeout(()=>setErrorOccured(false), 5000)
         }

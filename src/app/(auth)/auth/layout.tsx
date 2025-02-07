@@ -1,5 +1,7 @@
 'use client'
 import Link from "next/link"
+import Image from "next/image"
+import { useEffect } from "react"
 import { useRouter, useSearchParams } from 'next/navigation'
 import { authClient } from "@/lib/auth-client"
 
@@ -8,15 +10,17 @@ export default function Layout({ children }:{ children:React.ReactNode }) {
     const { isPending, data } = authClient.useSession()
     const router = useRouter()
     const searchParams = useSearchParams()
-    
-    if (!isPending && data) {
-        const callback = searchParams.get("callback")
-        if (callback) {
-            router.replace(callback)
-        } else {
-            router.replace("/products")
+
+    useEffect(() => {
+        if (!isPending && data) {
+            const callback = searchParams.get("callback")
+            if (callback) {
+                router.replace(callback)
+            } else {
+                router.replace("/products")
+            }
         }
-    }
+    },[isPending])
 
     if (isPending || data) {
         return (
@@ -27,11 +31,15 @@ export default function Layout({ children }:{ children:React.ReactNode }) {
     }
 
     return (
-        <main className="h-screen w-screen flex flex-col justify-center items-center">
-            <div className="flex justify-center items-center mb-7">
-                <Link className="text-[40px] font-bold text-zinc-700" href="/products">Men&apos;s Collection</Link>
+        <main className="h-screen w-screen bg-[url('/background/bg3.jpg')] bg-cover">
+            <div className="h-screen w-screen backdrop-blur-3xl flex flex-col justify-center items-center">
+                <div className="flex justify-center items-center mb-7">
+                    <Link className="" href="/products">
+                        <Image src="/logo.png" alt="logo" width={100} height={100} />
+                    </Link>
+                </div>
+                { children }
             </div>
-            { children }
         </main>
     )
 }
