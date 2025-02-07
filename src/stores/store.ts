@@ -19,7 +19,7 @@ type Actions = {
     reset: () => void
 }
 
-export const useCartStore = create<States&Actions>((set, get) => ({
+export const useCartStore = create<States&Actions>((set) => ({
     cart: [],
     totalItems: 0,
     totalPrice: 0,
@@ -42,7 +42,7 @@ export const useCartStore = create<States&Actions>((set, get) => ({
         totalItems: state.totalItems - 1,
         totalPrice: state.totalPrice - getPrice(id, state.cart)
     })),
-    reset: () => set((state) => ({
+    reset: () => set(() => ({
         cart: [],
         totalItems: 0,
         totalPrice: 0
@@ -95,7 +95,7 @@ function decrement(id:number, cart:CartItem[]) {
 } 
 
 function getPrice (id:number, cart:CartItem[]) {
-    let item = cart.find((item) => item.product.id === id)
+    const item = cart.find((item) => item.product.id === id)
     console.log("Item inside get price --- ", item)
     return item ? item?.product.price : 0
 }

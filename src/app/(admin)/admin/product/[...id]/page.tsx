@@ -1,5 +1,5 @@
 import { Suspense } from 'react'
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { 
@@ -15,9 +15,9 @@ interface Params {
     id: string[]
 }
 
-export async function generateMetadata({ params }:{ params:Promise<Params> }, parent:ResolvingMetadata):Promise<Metadata> {
+export async function generateMetadata({ params }:{ params:Promise<Params> }):Promise<Metadata> {
     const { id } = await params
-    const { error, product } = await getProductById(id[0])
+    const { product } = await getProductById(id[0])
 
     return {
         title: product?.name,

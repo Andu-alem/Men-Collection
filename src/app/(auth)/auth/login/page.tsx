@@ -18,6 +18,7 @@ import {
 } from "@/components/ui/form"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
 import { loginSchema } from "@/lib/form-schemas"
+import { toast } from "sonner"
 
 export default function Page() {
     const searchParams = useSearchParams()
@@ -35,15 +36,15 @@ export default function Page() {
 
     const submitHandler = async (formData: z.infer<typeof loginSchema>) => {
         const { email, password } = formData
-        const { data, error } = await authClient.signIn.email({ 
+        await authClient.signIn.email({ 
           email, 
           password 
        }, { 
-          onRequest: (ctx: any) => { 
+          onRequest: () => { 
            //show loading
            setSending(true)
           }, 
-          onSuccess: (ctx: any) => { 
+          onSuccess: () => { 
             //redirect to the dashboard
             setSending(false)
             if (callback) {
@@ -53,7 +54,7 @@ export default function Page() {
             }
           }, 
           onError: (ctx: any) => { 
-            alert(ctx.error.message); 
+            toast(ctx.error.message)
           }, 
         });
     }

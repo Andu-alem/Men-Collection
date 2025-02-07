@@ -8,6 +8,11 @@ export type Product = {
     imagePath: string
 }
 
+export type Category = {
+    id: number,
+    name: string
+}
+
 export type Meta = {
     totalPages: number,
     currentPage: number,

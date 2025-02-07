@@ -14,6 +14,7 @@ import {
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "./ui/collapsible"
 import { ChevronDown } from "lucide-react"
 import PriceRangeSlider from "./PriceRangeSlider"
+import { Category } from "@/lib/types"
 
 
 const AppSidebar = async () => {
@@ -38,7 +39,7 @@ const AppSidebar = async () => {
                             <SidebarGroupContent>
                                 <SidebarMenu>
                                     {
-                                        categories?.map((category:any, index:number) => (
+                                        categories?.map((category:Category, index:number) => (
                                             <SidebarMenuItem key={ index }>
                                                 <SidebarMenuButton>
                                                     <Link href={`/products/category/${category.id}`}>{ category.name }</Link>
