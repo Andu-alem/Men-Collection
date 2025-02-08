@@ -20,6 +20,7 @@ export const addProduct = async (formData:FormData) => {
         const fileName = `${Date.now()}-${image.name}`
         const blob = await put(`products/${fileName}`, image, { access: 'public'})
         const url = blob.url
+        console.log("Blob url is 0000===   ", url)
         //const imagePath = await upload(image)
 
         const product = await prisma.product.create({
