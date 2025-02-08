@@ -9,15 +9,18 @@ export const addProduct = async (formData:FormData) => {
     let productId:number;
     const prisma = new PrismaClient()
     try{
+        console.log("just inside Blob url is 0000===   ")
         const categoryId = parseInt(formData.get("category") as string)
         const name = formData.get("name") as string
         const description = formData.get("description") as string
         const price = parseFloat(formData.get("price") as string)
         const quantity = parseInt(formData.get("quantity") as string)
         const image = formData.get("image") as File
+        console.log("beforre Blob url is 0000===   ")
 
         //put the image file in vercel blob store and get url
         const fileName = `${Date.now()}-${image.name}`
+        console.log("image name Blob url is 0000===   ", fileName)
         const blob = await put(`products/${fileName}`, image, { access: 'public'})
         const url = blob.url
         console.log("Blob url is 0000===   ", url)
