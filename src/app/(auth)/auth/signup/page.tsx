@@ -62,7 +62,7 @@ export default function Page() {
             }
           }, 
           onError: (ctx: any) => { 
-            toast(ctx.error.message); 
+            toast("Failed to signup. Please try again."); 
           }, 
         });
     }
