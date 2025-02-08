@@ -14,10 +14,10 @@ import AddToCart from './AddToCart'
 
 
 const ProductCard = ({ product }:{ product: Product }) => {
-    const { id, name, imagePath, price, quantity } = product
+    const { id, name, imagePath, price } = product
 
     return (
-        <Card className="border-none">
+        <Card>
             <CardContent className='p-2'>
                 <div className="relative w-full h-[175px]">
                     <Image
@@ -27,12 +27,12 @@ const ProductCard = ({ product }:{ product: Product }) => {
                         fill={ true }
                     />
                 </div>
-                <CardTitle className="mt-2 text-zinc-700 text-[17px] capitalize">
+                <CardTitle className="mt-2 text-zinc-700 dark:text-zinc-200 text-[17px] capitalize">
                     { name }
                 </CardTitle>
-                <p className="text-[15px] text-zinc-700">Price : { price }ETB</p>
+                <p className="text-[15px] text-zinc-700 dark:text-zinc-300">Price : { price }ETB</p>
             </CardContent>
-            <CardFooter className="pb-2 px-3 flex justify-between border-t border-gray-200">
+            <CardFooter className="py-2 px-3 flex justify-between border-t border-gray-200 dark:border-zinc-700">
                 <AddToCart product={ product } />
                 <Button className="cursor-pointer" variant="link" asChild>
                     <Link className="hover:text-orange-500" href={`/product/${id}`}>

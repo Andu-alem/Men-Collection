@@ -37,14 +37,14 @@ export default async function Page({ params }:{ params:Promise<Params> }) {
                         fill={ true }
                     />
                 </div>
-                <div className="w-full mx-auto sm:w-1/2">
-                    <h3 className="text-zinc-800 font-semibold text-lg capitalize">{ product?.name }</h3>
-                    <p className="text-stone-800 text-[15px] my-4">{ product?.description }</p>
-                    <p className="text-stone-800 text-[15px] my-4">Price : { product?.price }ETB</p>
+                <div className="w-full mx-auto sm:w-1/2 text-zinc-800 dark:text-gray-200">
+                    <h3 className="font-semibold text-lg capitalize">{ product?.name }</h3>
+                    <p className="text-[15px] my-4">{ product?.description }</p>
+                    <p className="text-[15px] my-4">Price : { product?.price }ETB</p>
                     { product && <AddToCart product={ product } />}
                 </div>
             </div>
-            <div className="my-7 border border-zinc-100 rounded-md p-4">
+            <div className="my-7 border border-zinc-100 dark:border-zinc-700 rounded-md p-4">
                 <h3 className="font-bold text-lg my-2">Related Products</h3>
                     <ScrollArea className="overflow-x-auto w-full">
                         <Suspense fallback={ <div>Loading...</div> }>

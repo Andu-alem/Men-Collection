@@ -13,6 +13,7 @@ import { Skeleton } from "./ui/skeleton"
 import { Badge } from "./ui/badge"
 import { useCartStore } from "@/stores/store"
 import HeaderMenu from "./HeaderMenu"
+import ModeToggle from "./ModeToggle"
 
 export default function Header() {
     const { data, isPending } = authClient.useSession()
@@ -21,8 +22,8 @@ export default function Header() {
     const router = useRouter()
 
     return (
-        <div className="z-50 sticky top-0 w-full p-2 flex flex-col gap-3 bg-white pt-4 pb-2 px-5 border-b border-zinc-300">
-            <div className="flex flex justify-between">
+        <div className="z-50 sticky top-0 w-full p-2 flex flex-col gap-3 bg-white dark:bg-zinc-900 pt-4 pb-2 px-5 border-b border-zinc-300">
+            <div className="flex flex justify-between items-center">
                 {
                     pathName.includes('/products') ? (
                         <HeaderMenu />
@@ -30,16 +31,18 @@ export default function Header() {
                         <ArrowLeftIcon className="cursor-pointer hover:text-zinc-500" onClick={ () => router.back() }/>
                     )
                 }
-                <div className="relative h-50 md:w-[150px]">
-                    <h3 className="text-black font-bold">Men's Fashion</h3>
-                </div>
+                <Link href="/products" className="flex items-end">
+                    <Image src="/logo2.png" width={40} height={40} alt="logo" />
+                    <span className="font-semibold text-zinc-700 dark:text-zinc-200 text-sm sm:text-xl hover:underline">Classic Men</span>
+                </Link>
                 <div className="hidden sm:block">
                     <Search />
                 </div>
                 <div className="flex items-center gap-3">
+                    <ModeToggle />
                     <Link href="/cart" className="relative">
-                        <ShoppingCart className="text-amber-500 font-bold" size="30" />
-                        {  totalItems > 0 && <Badge className="absolute top-0 right-0 z-50 text-[11px] rounded-full py-0 px-1 bg-black">{ totalItems }</Badge>}
+                        <ShoppingCart className="text-amber-500 font-bold" size="32" />
+                        {  totalItems > 0 && <Badge className="absolute top-0 right-0 z-50 text-[11px] rounded-full py-0 px-1 bg-black dark:bg-white dark:text-zinc-700">{ totalItems }</Badge>}
                     </Link>
                     {
                         isPending ? (

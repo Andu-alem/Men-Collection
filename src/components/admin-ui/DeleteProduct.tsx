@@ -26,7 +26,7 @@ export default function DeleteProduct({ id }:{ id:number }) {
     }
     return (
         <Dialog>
-            <DialogTrigger className="text-[15px] hover:text-orange-500">Delete</DialogTrigger>
+            <DialogTrigger className="text-[15px] hover:text-amber-500">Delete</DialogTrigger>
             <DialogOverlay>
                 <DialogContent>
                     <DialogHeader>
