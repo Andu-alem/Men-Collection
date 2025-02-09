@@ -62,6 +62,7 @@ export default function Page() {
             }
           }, 
           onError: (ctx: any) => { 
+            setSending(false)
             toast("Failed to signup. Please try again."); 
           }, 
         });
@@ -76,7 +77,7 @@ export default function Page() {
     }
 
     return (
-      <div className="min-h-screen w-screen backdrop-blur-3xl flex flex-col justify-center items-center">
+      <div className="min-h-screen w-screen backdrop-blur-3xl flex flex-col justify-center items-center mb-5">
           <Link className="" href="/products">
               <Image src="/logo.png" alt="logo" width={300} height={100} />
           </Link>

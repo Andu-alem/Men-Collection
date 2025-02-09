@@ -58,6 +58,7 @@ export default function Page() {
             }
           }, 
           onError: (ctx: any) => { 
+            setSending(false)
             toast(ctx.error.message)
           }, 
         });

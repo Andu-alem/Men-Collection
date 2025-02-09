@@ -26,6 +26,7 @@ import { useEffect, useState } from "react"
 import { getAllCategories } from "@/lib/queries"
 import { addProduct } from "@/lib/actions"
 import Image from "next/image"
+import { toast } from 'sonner';
 
 type Category = {
     id: number,
@@ -34,6 +35,7 @@ type Category = {
 export default function Page() {
     const [categories, setCategories] = useState<Category[]>([])
     const [imageSrc, setImageSrc] = useState<string|null>(null)
+    const [sending, setSending] = useState(false)
     const form = useForm<z.infer<typeof productSchema>>({
         resolver: zodResolver(productSchema),
         defaultValues: {
@@ -58,6 +60,7 @@ export default function Page() {
     },[])
 
     const submitHandler = async (data: z.infer<typeof productSchema>) => {
+        setSending(true)
         const formData = new FormData()
         for (const key in data) {
             if (Object.prototype.hasOwnProperty.call(data, key)) {
@@ -66,7 +69,9 @@ export default function Page() {
         }
         const { error } = await addProduct(formData)
         if (error) {
+            toast("Failed to create product.")
             setErrorOccured(true)
+            setSending(false)
             setTimeout(()=>setErrorOccured(false), 5000)
         }
     }
@@ -83,7 +88,7 @@ export default function Page() {
     return (
         <div className="w-4/5 sm:w-1/2 lg:w-3/5 mx-auto">
         <Form { ...form }>
-            <form onSubmit={form.handleSubmit(submitHandler)} className="space-y-4 border border-zinc-300 rounded-lg p-7">
+            <form onSubmit={form.handleSubmit(submitHandler)} className="space-y-4 border border-zinc-300 dark:border-zinc-700 dark:bg-zinc-900 rounded-lg p-7">
                 <FormField
                     control={ form.control }
                     name="category"
@@ -174,7 +179,7 @@ export default function Page() {
                                     </div>
                                 )
                             }
-                            <FormLabel htmlFor="image" className="border border-zinc-400 rounded-lg p-2 text-zinc-700 my-2 cursor-pointer">Pick product image</FormLabel>
+                            <FormLabel htmlFor="image" className="border border-zinc-400 rounded-lg p-2 text-zinc-700 dark:text-zinc-300 my-2 cursor-pointer">Pick product image</FormLabel>
                             <FormControl>
                                 <Input 
                                     className="hidden"
@@ -197,7 +202,7 @@ export default function Page() {
                 
 
                 <div className="flex justify-center">
-                  <Button className={`h-7`} type="submit">SUBMIT</Button>
+                  <Button className={`h-7 ${ sending ? 'animate-pulse':'animate-none' }`} type="submit">SUBMIT</Button>
                 </div>
                 { errorOccured && <p className="text-[15px] text-red-400">Error occured while submiting a product. Please try again.</p> }
             </form>

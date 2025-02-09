@@ -35,6 +35,7 @@ type Category = {
 export default function Page() {
     const [categories, setCategories] = useState<Category[]>([])
     const [imageSrc, setImageSrc] = useState<string|null>(null)
+    const [sending, setSending] = useState(false)
     const form = useForm<z.infer<typeof productSchema>>({
         resolver: zodResolver(productSchema),
         defaultValues: {
@@ -59,6 +60,7 @@ export default function Page() {
     },[])
 
     const submitHandler = async (data: z.infer<typeof productSchema>) => {
+        setSending(true)
         const formData = new FormData()
         for (const key in data) {
             if (Object.prototype.hasOwnProperty.call(data, key)) {
@@ -69,6 +71,7 @@ export default function Page() {
         if (error) {
             toast("Failed to create product.")
             setErrorOccured(true)
+            setSending(false)
             setTimeout(()=>setErrorOccured(false), 5000)
         }
     }
@@ -199,7 +202,7 @@ export default function Page() {
                 
 
                 <div className="flex justify-center">
-                  <Button className={`h-7`} type="submit">SUBMIT</Button>
+                  <Button className={`h-7 ${ sending ? 'animate-pulse':'animate-none' }`} type="submit">SUBMIT</Button>
                 </div>
                 { errorOccured && <p className="text-[15px] text-red-400">Error occured while submiting a product. Please try again.</p> }
             </form>
