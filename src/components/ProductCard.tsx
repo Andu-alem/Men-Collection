@@ -11,6 +11,12 @@ import { Button } from './ui/button'
 import { MoreHorizontal } from 'lucide-react'
 import { Product } from '@/lib/types'
 import AddToCart from './AddToCart'
+import {
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+  } from "@/components/ui/tooltip"
 
 
 const ProductCard = ({ product }:{ product: Product }) => {
@@ -34,11 +40,20 @@ const ProductCard = ({ product }:{ product: Product }) => {
             </CardContent>
             <CardFooter className="py-2 px-3 flex justify-between border-t border-gray-200 dark:border-zinc-700">
                 <AddToCart product={ product } />
-                <Button className="cursor-pointer" variant="link" asChild>
-                    <Link className="hover:text-orange-500" href={`/product/${id}`}>
-                        <MoreHorizontal />
-                    </Link>
-                </Button>
+                <TooltipProvider>
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <Button className="cursor-pointer" variant="link" asChild>
+                                <Link className="hover:text-orange-500" href={`/product/${id}`}>
+                                    <MoreHorizontal />
+                                </Link>
+                            </Button>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                            <p>See Detail</p>
+                        </TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
             </CardFooter>
         </Card>
     )
