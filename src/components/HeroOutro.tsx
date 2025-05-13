@@ -1,3 +1,4 @@
+'use client'
 import { cn } from "@/lib/utils"
 import { DotPattern } from "./magicui/dot-pattern"
 import { Button } from "./ui/button"
