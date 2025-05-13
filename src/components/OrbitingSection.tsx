@@ -1,4 +1,3 @@
-'use client'
 import { OrbitingCircles } from "./magicui/orbiting-circles"
 import { cn } from "@/lib/utils"
 import { DotPattern } from "./magicui/dot-pattern"
