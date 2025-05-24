@@ -17,7 +17,7 @@ export default async function Page({ params }:{ params:Promise<Params> }) {
                     <div>No products found under this category</div>
                 ) : (
                     <>
-                        <div className="w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 px-4">
+                        <div className="w-full grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-5 md:gap-y-10 px-4 xl:px-10">
                             {
                                 products?.map((product:Product, index:number) => (
                                     <ProductCard product={ product } key={ index } />
