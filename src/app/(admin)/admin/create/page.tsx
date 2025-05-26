@@ -20,8 +20,6 @@ import {
     SelectContent,
     SelectItem,
     SelectTrigger,
-    SelectGroup,
-    SelectLabel,
     SelectValue
 } from "@/components/ui/select"
 import { useEffect, useState } from "react"
