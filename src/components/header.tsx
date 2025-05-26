@@ -1,5 +1,6 @@
 'use client'
 import Link from "next/link"
+import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 import Search from "./SearchBar"
 import { 
@@ -20,7 +21,7 @@ export default function Header() {
     const router = useRouter()
 
     return (
-        <div className="z-50 sticky top-0 w-full p-2 flex flex-col gap-3 backdrop-blur-3xl pt-4 pb-2 px-5 border-b border-zinc-300">
+        <div className="z-50 sticky top-0 w-full p-2 flex flex-col gap-3 bg-white pt-4 pb-2 px-5 border-b border-zinc-300">
             <div className="flex flex justify-between">
                 {
                     pathName.includes('/products') ? (
@@ -29,7 +30,10 @@ export default function Header() {
                         <ArrowLeftIcon className="cursor-pointer mt-1" onClick={ () => router.back() }/>
                     )
                 }
-                <h1 className="text-xl font-bold">Men's Collection</h1>
+                <div className="relative h-50 w-[100px] md:w-[150px] flex">
+                    <Image className="absolute" src="/logo2.png" fill={ true } alt="logo" />
+                    <h3 className="text-black font-bold">Men's Fashion</h3>
+                </div>
                 <div className="hidden sm:block">
                     <Search />
                 </div>
