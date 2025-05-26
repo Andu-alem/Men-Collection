@@ -13,7 +13,7 @@ export default async function Page({ searchParams }:{ searchParams:Promise<Searc
     const { error, products, meta } = await getAllProducts(page , name)
     
     return (
-        <div className="w-full flex flex-col items-center gap-5">
+        <div className="w-full flex flex-col items-center gap-5 mt-2 mb-5">
             {
                 error ? (
                     <div>No products found</div>
