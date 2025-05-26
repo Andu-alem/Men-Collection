@@ -22,11 +22,6 @@ const productData:Product[] = [
         price: "15,400 ETB"
     },
     {
-        image: "/featured/watches2.JFIF",
-        name: "Quartz Watches",
-        price: "4,400 ETB"
-    },
-    {
         image: "/featured/valentine.JPG",
         name: "Valentino Perfume",
         price: "7,300 ETB"
@@ -35,11 +30,6 @@ const productData:Product[] = [
         image: "/featured/snicker.JPEG",
         name: "Comfortable Snicker",
         price: "5,700 ETB"
-    },
-    {
-        image: "/featured/tie3.JFIF",
-        name: "Ties",
-        price: "3,500 ETB"
     },
     {
         image: "/featured/suit3.JPEG",

@@ -3,10 +3,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 import Search from "./SearchBar"
-import { 
-    ShoppingCart,
-    ArrowLeftIcon
-} from "lucide-react"
+import { ShoppingCart, ArrowLeftIcon } from "lucide-react"
 import { Button } from "./ui/button"
 import { authClient } from "@/lib/auth-client"
 import { Skeleton } from "./ui/skeleton"
@@ -24,17 +21,19 @@ export default function Header() {
     return (
         <div className="z-50 sticky top-0 w-full p-2 flex flex-col gap-3 bg-white dark:bg-zinc-900 pt-4 pb-2 px-5 border-b border-zinc-300">
             <div className="flex flex justify-between items-center">
-                {
-                    pathName.includes('/products') ? (
-                        <HeaderMenu />
-                    ):(
-                        <ArrowLeftIcon className="cursor-pointer hover:text-zinc-500" onClick={ () => router.back() }/>
-                    )
-                }
-                <Link href="/products" className="flex items-end">
-                    <Image src="/logo2.png" width={40} height={40} alt="logo" />
-                    <span className="font-semibold text-zinc-700 dark:text-zinc-200 text-sm sm:text-xl hover:underline">Classic Man</span>
-                </Link>
+                <div className="flex items-center gap-4">
+                    {
+                        pathName.includes('/products') ? (
+                            <HeaderMenu />
+                        ):(
+                            <ArrowLeftIcon className="cursor-pointer hover:text-zinc-500" onClick={ () => router.back() }/>
+                        )
+                    }
+                    <Link href="/products" className="flex items-end">
+                        <Image src="/logo2.png" width={40} height={40} alt="logo" />
+                        <span className="font-semibold text-zinc-700 dark:text-zinc-200 text-sm sm:text-xl hover:underline">Classic Man</span>
+                    </Link>
+                </div>
                 <div className="hidden sm:block">
                     <Search />
                 </div>
