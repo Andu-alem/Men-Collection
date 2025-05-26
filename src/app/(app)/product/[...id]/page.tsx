@@ -28,18 +28,19 @@ export default async function Page({ params }:{ params:Promise<Params> }) {
 
     return (
         <div className="w-[90vw] sm:w-[94vw] md:w-[86vw] lg:w-[82vw] mx-auto">
-            <div className="flex flex-col sm:flex-row gap-5 my-10">
-                <Image
-                    className="w-full mx-auto sm:w-1/2 rounded md" 
-                    src={ product?.imagePath ?? '' }
-                    alt={ 'product' } 
-                    width={ 400 }
-                    height={ 200 }
-                />
+            <div className="flex flex-col sm:flex-row gap-5 my-5">
+                <div className="relative w-full sm:w-1/2 mx-auto h-[55vh]">
+                    <Image
+                        className="rounded md absolute" 
+                        src={ product?.imagePath ?? '' }
+                        alt={ 'product' } 
+                        fill={ true }
+                    />
+                </div>
                 <div className="w-full mx-auto sm:w-1/2">
-                    <h3 className="text-zinc-700 text-lg">{ product?.name }</h3>
-                    <p className="text-stone-700 text-[15px] my-4">{ product?.description }</p>
-                    <p className="text-stone-700 text-[15px] my-4">Price : { product?.price }ETB</p>
+                    <h3 className="text-zinc-800 font-semibold text-lg capitalize">{ product?.name }</h3>
+                    <p className="text-stone-800 text-[15px] my-4">{ product?.description }</p>
+                    <p className="text-stone-800 text-[15px] my-4">Price : { product?.price }ETB</p>
                     { product && <AddToCart product={ product } />}
                 </div>
             </div>
