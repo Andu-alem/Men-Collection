@@ -1,26 +1,23 @@
 'use client'
-import { useEffect, useState } from "react"
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useState } from "react"
+import { useRouter } from 'next/navigation'
 import { authClient } from "@/lib/auth-client"
 
 
 export default function Layout({ children }:{ children:React.ReactNode }) {
-    const { isPending, data, error } = authClient.useSession()
+    const { isPending, data } = authClient.useSession()
     const router = useRouter()
-    const searchParams = useSearchParams()
     const [isAccessGranted, setIsAccessGranted] = useState(false)
-    
-    useEffect(() => {
-        if (!isPending) {
-            if (!data) {
-                router.replace("/auth/login?callback=/admin")
-            } else if (data.user.role !== 'user') {
-                router.replace("/products")
-            } else {
-                setIsAccessGranted(true)
-            }
+
+    if (!isPending){
+        if (!data) {
+            router.replace("/auth/login?callback=/admin")
+        } else if (data.user.role !== 'user') {
+            router.replace("/products")
+        } else {
+            setIsAccessGranted(true)
         }
-    }, [isPending])
+    }
     
     if (!isAccessGranted) {
         return (
