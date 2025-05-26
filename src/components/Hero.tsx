@@ -11,7 +11,7 @@ const Hero = () => {
     }
     return (
         <div>
-            <div className="w-full h-screen mx-auto bg-[url('../app/bg3.jpg')] bg-cover fixed -z-50"></div>
+            <div className="w-full h-screen mx-auto bg-[url('/bg3.jpg')] bg-cover fixed -z-50"></div>
             <div className="h-screen w-full bg-gradient-to-l from-black via-transparent-50 to-transparent -z-50 fixed top-0"></div>
             <div className="h-[100vh] flex justify-center items-center">
                 <div className="w-11/12 md:w-2/3 flex flex-col items-center gap-5">
