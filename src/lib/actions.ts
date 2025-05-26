@@ -53,7 +53,8 @@ export const addProduct = async (formData:FormData) => {
         productId = product.id
     } catch (e) {
         return {
-            error: true
+            error: true,
+            message: e
         }
     }
     revalidatePath('/products')
@@ -74,7 +75,8 @@ export const deleteProduct = async (id:number) => {
         })
     } catch (e) {
         return {
-            error: true
+            error: true,
+            message: e
         }
     }
     revalidatePath('/products')
@@ -100,7 +102,10 @@ export const addCategory = async (formData:FormData) => {
         }
     } catch (e) {
         prisma.$disconnect()
-        return { error: true }
+        return { 
+            error: true,
+            message: e 
+        }
     }
 }
 
@@ -136,7 +141,8 @@ export const addOrder = async (cart:CartItem[]) => {
     } catch(e) {
         await prisma.$disconnect()
         return {
-            error: true
+            error: true,
+            message: e
         }
     }
 
