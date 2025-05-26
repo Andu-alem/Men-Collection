@@ -27,11 +27,10 @@ export default function Header() {
                     pathName.includes('/products') ? (
                         <HeaderMenu />
                     ):(
-                        <ArrowLeftIcon className="cursor-pointer mt-1" onClick={ () => router.back() }/>
+                        <ArrowLeftIcon className="cursor-pointer hover:text-zinc-500" onClick={ () => router.back() }/>
                     )
                 }
-                <div className="relative h-50 w-[100px] md:w-[150px] flex">
-                    <Image className="absolute" src="/logo2.png" fill={ true } alt="logo" />
+                <div className="relative h-50 md:w-[150px]">
                     <h3 className="text-black font-bold">Men's Fashion</h3>
                 </div>
                 <div className="hidden sm:block">
@@ -39,7 +38,7 @@ export default function Header() {
                 </div>
                 <div className="flex items-center gap-3">
                     <Link href="/cart" className="relative">
-                        <ShoppingCart className="text-orange-500 font-bold" size="32" />
+                        <ShoppingCart className="text-amber-500 font-bold" size="30" />
                         {  totalItems > 0 && <Badge className="absolute top-0 right-0 z-50 text-[11px] rounded-full py-0 px-1 bg-black">{ totalItems }</Badge>}
                     </Link>
                     {
@@ -50,14 +49,14 @@ export default function Header() {
                                 className="h-7 text-[14px]" 
                                 onClick={() => authClient.signOut() }>LOGOUT</Button>
                         ):(
-                            <Button className="h-7" asChild>
-                                <Link className="text-[14px]" href={`/auth/login?callback=${pathName}`}>LOGIN</Link>
+                            <Button className="h-7 text-[14px]" asChild>
+                                <Link className="" href={`/auth/login?callback=${pathName}`}>LOGIN</Link>
                             </Button>
                         )
                     }
                 </div>
             </div>
-            <div className="block sm:hidden px-[7%]">
+            <div className="block sm:hidden px-[15%]">
                 <Search />
             </div>
         </div>
