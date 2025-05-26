@@ -1,23 +1,34 @@
 'use client'
 import Link from "next/link"
-import { usePathname } from "next/navigation"
+import { usePathname, useRouter } from "next/navigation"
 import Search from "./SearchBar"
-import { ShoppingCart } from "lucide-react"
+import { 
+    ShoppingCart,
+    ArrowLeftIcon
+} from "lucide-react"
 import { Button } from "./ui/button"
 import { authClient } from "@/lib/auth-client"
 import { Skeleton } from "./ui/skeleton"
 import { Badge } from "./ui/badge"
 import { useCartStore } from "@/stores/store"
-
+import HeaderMenu from "./HeaderMenu"
 
 export default function Header() {
     const { data, isPending } = authClient.useSession()
     const totalItems = useCartStore((state) => state.totalItems)
     const pathName = usePathname()
+    const router = useRouter()
 
     return (
         <div className="z-50 sticky top-0 w-full p-2 flex flex-col gap-3 backdrop-blur-3xl pt-4 pb-2 px-5 border-b border-zinc-300">
             <div className="flex flex justify-between">
+                {
+                    pathName.includes('/products') ? (
+                        <HeaderMenu />
+                    ):(
+                        <ArrowLeftIcon className="cursor-pointer mt-1" onClick={ () => router.back() }/>
+                    )
+                }
                 <h1 className="text-xl font-bold">Men's Collection</h1>
                 <div className="hidden sm:block">
                     <Search />
