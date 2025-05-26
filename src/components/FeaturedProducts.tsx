@@ -12,37 +12,37 @@ interface Product {
 
 const productData:Product[] = [
     {
-        image: "/featured/suit2.JPG",
+        image: "/featured/suit2.jpg",
         name: "Stylish Suit",
         price: "15,400 ETB"
     },
     {
-        image: "/featured/shoe2.JPG",
+        image: "/featured/shoe2.jpg",
         name: "Classic",
         price: "15,400 ETB"
     },
     {
-        image: "/featured/valentine.JPG",
+        image: "/featured/valentine.jpg",
         name: "Valentino Perfume",
         price: "7,300 ETB"
     },
     {
-        image: "/featured/snicker.JPEG",
+        image: "/featured/snicker.jpeg",
         name: "Comfortable Snicker",
         price: "5,700 ETB"
     },
     {
-        image: "/featured/suit3.JPEG",
+        image: "/featured/suit3.jpeg",
         name: "Stylish Suit",
         price: "15,400 ETB"
     },
     {
-        image: "/featured/suit1.JPG",
+        image: "/featured/suit1.jpg",
         name: "Stylish Suit",
         price: "15,400 ETB"
     },
     {
-        image: "/featured/shoe.JPG",
+        image: "/featured/shoe.jpg",
         name: "Classic",
         price: "15,400 ETB"
     },
