@@ -85,7 +85,7 @@ export default function Page() {
     return (
         <div className="w-4/5 sm:w-1/2 lg:w-3/5 mx-auto">
         <Form { ...form }>
-            <form onSubmit={form.handleSubmit(submitHandler)} className="space-y-4 border border-zinc-300 rounded-lg p-7">
+            <form onSubmit={form.handleSubmit(submitHandler)} className="space-y-4 border border-zinc-300 dark:border-zinc-700 dark:bg-zinc-900 rounded-lg p-7">
                 <FormField
                     control={ form.control }
                     name="category"
@@ -176,7 +176,7 @@ export default function Page() {
                                     </div>
                                 )
                             }
-                            <FormLabel htmlFor="image" className="border border-zinc-400 rounded-lg p-2 text-zinc-700 my-2 cursor-pointer">Pick product image</FormLabel>
+                            <FormLabel htmlFor="image" className="border border-zinc-400 rounded-lg p-2 text-zinc-700 dark:text-zinc-300 my-2 cursor-pointer">Pick product image</FormLabel>
                             <FormControl>
                                 <Input 
                                     className="hidden"
