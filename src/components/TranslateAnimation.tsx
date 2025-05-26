@@ -12,7 +12,7 @@ const TranslateAnimation = ({ duration, children, className='' }:Props) => {
     return (
         <motion.div
             initial={{
-                y: 200,
+                y: 100,
                 opacity: 0
             }}
             whileInView={{
@@ -23,6 +23,7 @@ const TranslateAnimation = ({ duration, children, className='' }:Props) => {
                 duration: duration,
                 delay: 0.3
             }}
+            viewport={{ once: true }}
             className={ className }
         >
             { children }
