@@ -3,9 +3,9 @@ import { authClient } from "@/lib/auth-client" //import the auth client
 import { useState } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Link from "next/link"
+import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { z } from "zod"
 
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -17,20 +17,7 @@ import {
     FormItem
 } from "@/components/ui/form"
 import { EyeIcon, EyeOffIcon } from "lucide-react"
-
-const formSchema = z.object({
-    email: z.string()
-            .min(1,{
-                message: "Email is required.",
-            })
-            .email({
-                message: "Please provide a valid email."
-            }),
-    password: z.string()
-                .min(5,{
-                    message: "The password is required and must be minimum 5 character."
-                })
-})
+import { loginSchema } from "@/lib/form-schemas"
 
 export default function Page() {
     const searchParams = useSearchParams()
@@ -38,15 +25,15 @@ export default function Page() {
     const router = useRouter()
     const [sending, setSending] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
-    const form = useForm<z.infer<typeof formSchema>>({
-        resolver: zodResolver(formSchema),
+    const form = useForm<z.infer<typeof loginSchema>>({
+        resolver: zodResolver(loginSchema),
         defaultValues: {
           email: "",
           password: "",
         }
     })
 
-    const submitHandler = async (formData: z.infer<typeof formSchema>) => {
+    const submitHandler = async (formData: z.infer<typeof loginSchema>) => {
         const { email, password } = formData
         const { data, error } = await authClient.signIn.email({ 
           email, 
