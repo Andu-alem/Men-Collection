@@ -17,29 +17,21 @@ import {
     TooltipProvider,
     TooltipTrigger,
   } from "@/components/ui/tooltip"
-import { Lens } from "@/components/magicui/lens"
 
 const ProductCard = ({ product }:{ product: Product }) => {
     const { id, name, imagePath, price } = product
 
     return (
-        <Card>
+        <Card className="shadow-none">
             <CardContent className='p-0'>
-                <Lens
-                    zoomFactor={2}
-                    lensSize={150}
-                    isStatic={false}
-                    ariaLabel="Zoom Area"
-                    >
-                    <div className="relative w-full h-[225px]">
-                        <Image
-                            className="absolute rounded-t-lg"
-                            src={imagePath}
-                            alt="product"
-                            fill={ true }
-                        />
-                    </div>
-                    </Lens>
+                <div className="relative w-full h-[240px]">
+                    <Image
+                        className="absolute rounded-t-lg"
+                        src={imagePath}
+                        alt="product"
+                        fill={ true }
+                    />
+                </div>
                 <CardTitle className="mt-2 mx-2 text-zinc-700 dark:text-zinc-200 text-[17px] capitalize">
                     <Link className="hover:underline" href={`/product/${id}`}>
                         { name }
