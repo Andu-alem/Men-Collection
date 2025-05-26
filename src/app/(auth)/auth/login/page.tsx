@@ -60,7 +60,7 @@ export default function Page() {
     }
 
     return (
-      <div className="w-4/5 sm:w-3/5 md:w-2/5 mx-auto border border-zinc-300 rounded-lg px-7 py-10">
+      <div className="w-4/5 sm:w-3/5 md:w-2/5 mx-auto border border-zinc-300 rounded-lg px-7 py-10 bg-white">
         <Form { ...form }>
             <form onSubmit={form.handleSubmit(submitHandler)} className="space-y-8">
                 <FormField
