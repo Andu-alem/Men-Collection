@@ -38,19 +38,19 @@ export default async function Page({ params }:{ params:Promise<Params> }) {
                     width={ 300 }
                     height={ 200 }
                 />
-                <div className="w-full mx-auto sm:w-1/2">
-                    <h3 className="text-zinc-700 text-lg capitalize">{ product?.name }</h3>
-                    <p className="text-stone-700 text-[15px] my-4">{ product?.description }</p>
-                    <p className="text-stone-700 text-[15px] my-4">Price : { product?.price }ETB</p>
+                <div className="w-full mx-auto sm:w-1/2 text-zinc-900 dark:text-zinc-200">
+                    <h3 className="text-lg capitalize">{ product?.name }</h3>
+                    <p className="text-[15px] my-4">{ product?.description }</p>
+                    <p className="text-[15px] my-4">Price : { product?.price }ETB</p>
                     <div className="flex gap-7">
-                        <Button className="text-[15px] border-zinc-400 h-7 hover:text-orange-500" variant="outline" asChild>
+                        <Button className="text-[15px] border-zinc-400 h-7 hover:text-amber-500" variant="outline" asChild>
                             <Link href="/admin/update">Update</Link>
                         </Button>
                         {product && <DeleteProduct id={ product.id } />}
                     </div>
                 </div>
             </div>
-            <div className="my-7 border border-zinc-100 rounded-md p-4">
+            <div className="my-7 border border-zinc-100 dark:border-zinc-900 rounded-md p-4">
                 <h3 className="font-bold text-lg my-2">Related Products</h3>
                     <ScrollArea className="overflow-x-auto w-full">
                         <Suspense fallback={ <div>Loading...</div> }>
