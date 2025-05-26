@@ -33,7 +33,7 @@ export default function Header() {
                 }
                 <Link href="/products" className="flex items-end">
                     <Image src="/logo2.png" width={40} height={40} alt="logo" />
-                    <span className="font-semibold text-zinc-700 dark:text-zinc-200 text-sm sm:text-xl hover:underline">Classic Men</span>
+                    <span className="font-semibold text-zinc-700 dark:text-zinc-200 text-sm sm:text-xl hover:underline">Classic Man</span>
                 </Link>
                 <div className="hidden sm:block">
                     <Search />
