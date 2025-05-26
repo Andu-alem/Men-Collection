@@ -47,7 +47,7 @@ const AdminSidebar = async () => {
                                     <SidebarMenuItem>
                                         <Collapsible>
                                             <SidebarMenuButton className="w-full" asChild>
-                                                <CollapsibleTrigger className="border border-red-300 flex justify-between">
+                                                <CollapsibleTrigger className="flex justify-between">
                                                     <span className="text-[17px] text-gray-300">Category</span>
                                                     <ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180 text-gray-400" />
                                                 </CollapsibleTrigger>
