@@ -31,7 +31,6 @@ const ProductCard = ({ product }:{ product: Product }) => {
                     { name }
                 </CardTitle>
                 <p className="text-[15px] text-zinc-700">Price : { price }ETB</p>
-                <p className="text-[15px] text-zinc-700">Quantity: { quantity }</p>
             </CardContent>
             <CardFooter className="pb-2 px-3 flex justify-between border-t border-gray-200">
                 <AddToCart product={ product } />
