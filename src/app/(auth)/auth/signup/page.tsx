@@ -1,31 +1,24 @@
 "use client"
 import { authClient } from "@/lib/auth-client"
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from "next/navigation"
-import Link from "next/link"
+import Link from 'next/link'
+import Image from 'next/image'
 import { z } from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { 
-    Form,
-    FormControl,
-    FormField,
-    FormMessage,
-    FormItem
-} from "@/components/ui/form"
-import { EyeIcon, EyeOffIcon } from "lucide-react";
 import { signupSchema } from "@/lib/form-schemas"
 import { toast } from "sonner"
+import SignupForm from "@/components/SignupForm"
+
+export const dynamic = 'force-dynamic'
 
 export default function Page() {
     const searchParams = useSearchParams()
-    const callback = searchParams.get("callback")
+    const { isPending, data } = authClient.useSession()
+    const [callback, setCallback] = useState<string|null>(null)
     const router = useRouter()
     const [sending, setSending] = useState(false)
-    const [showPassword, setShowPassword] = useState(false)
     const form = useForm<z.infer<typeof signupSchema>>({
         resolver: zodResolver(signupSchema),
         defaultValues: {
@@ -35,6 +28,18 @@ export default function Page() {
           confirmPassword: ""
         }
     })
+
+    useEffect(() => {
+      if (!isPending && data) {
+        const param = searchParams.get("callback")
+        if (param) {
+          setCallback(callback)
+          router.replace(param)
+        } else {
+          router.replace("/products")
+        }
+      }
+    },[isPending])
 
     const submitHandler = async (formData: z.infer<typeof signupSchema>) => {
         const { name, email, password } = formData
@@ -62,78 +67,25 @@ export default function Page() {
         });
     }
 
-    return (
-      <div className="w-4/5 sm:w-3/5 md:w-2/5 mx-auto border border-zinc-300 rounded-lg p-4 bg-white">
-        <Form { ...form }>
-            <form onSubmit={form.handleSubmit(submitHandler)} className="space-y-8">
-                <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                              <Input placeholder="username" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="email"
-                    render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                              <Input type="email" placeholder="johndoe@example.com" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="password"
-                    render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                              <Input type={ showPassword ? "text":"password" } placeholder="password" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <FormField
-                    control={form.control}
-                    name="confirmPassword"
-                    render={({ field }) => (
-                        <FormItem>
-                          <FormControl>
-                              <Input type={ showPassword ? "text":"password" } placeholder="confirm password" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                    )}
-                />
-                <div className="flex gap-1 text-zinc-700 text-[17px] items-center">
-                  {
-                    showPassword ? (
-                      <EyeOffIcon className="text-zinc-700 cursor-pointer" onClick={ () => setShowPassword(false)} />
-                    ):(
-                      <EyeIcon className="text-zinc-700 cursor-pointer" onClick={ () => setShowPassword(true) } />
-                    )
-                  } show password
-                </div>
+    if (isPending || data) {
+      return (
+          <div className="w-screen h-screen flex justify-center items-center bg-white z-50">
+              <p className="text-lg font-bold text-zinc-700">Loading....</p>
+          </div>
+      )
+    }
 
-                <div className="flex justify-center">
-                    <Button className="text-[17px]" variant="link" asChild>
-                      <div>
-                        Already registered?<Link href={`/auth/login${ callback ? `?callback=${callback}`:'' }`}>LOGIN</Link>
-                      </div>
-                    </Button>
-                  <Button className={`h-7 ${ sending ? 'animate-pulse':'animate-none'}`} type="submit">SIGNUP</Button>
-                </div>
-            </form>
-        </Form>
+    return (
+      <div className="min-h-screen w-screen backdrop-blur-3xl flex flex-col justify-center items-center">
+          <Link className="" href="/products">
+              <Image src="/logo.png" alt="logo" width={300} height={100} />
+          </Link>
+          <SignupForm
+            form={ form }
+            submitHandler={ submitHandler }
+            sending={ sending }
+            callback={ callback }
+          />
       </div>
     )
 }
