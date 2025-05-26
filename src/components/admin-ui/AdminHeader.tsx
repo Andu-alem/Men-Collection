@@ -24,7 +24,7 @@ import CollapseCategory from '../CollapsibleCategories'
 export default function AdminHeader() {
 
     return (
-        <div className="sm:hidden sticky top-0 z-50 bg-gray-50 w-full flex gap-7 py-3 px-5 mb-2">
+        <div className="sm:hidden sticky top-0 z-50 bg-gray-50 dark:bg-zinc-900 w-full flex gap-7 py-3 px-5 mb-2">
             <Sheet>
                 <SheetTrigger><MenuIcon /> </SheetTrigger>
                 <SheetContent>
