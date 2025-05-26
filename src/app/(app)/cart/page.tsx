@@ -37,7 +37,7 @@ export default function Page() {
     return (
         <div className="flex flex-col gap-2 w-11/12 md:w-7/12 lg:w-5/12 mt-3 mb-5">
             <div className="text-center">
-                <h3 className="font-bold text-xl my-2 border-b border-zinc-300 pb-3 text-zinc-700">Products in Cart</h3>
+                <h3 className="font-semibold text-lg my-2 border-b border-zinc-300 pb-3 text-zinc-800 dark:text-zinc-100">Products in Cart</h3>
             </div>
             <ScrollArea className="max-h-[70vh]">
                 {
