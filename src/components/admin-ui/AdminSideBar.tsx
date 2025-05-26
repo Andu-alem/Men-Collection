@@ -21,7 +21,7 @@ const AdminSidebar = async () => {
     const { categories } = await getAllCategories()
 
     return (
-        <Sidebar className="top-0 bg-zinc-900 text-gray-200">
+        <Sidebar className="top-0 bg-zinc-900">
             <SidebarHeader>
                 <AdminSidebarHeader />
             </SidebarHeader>
