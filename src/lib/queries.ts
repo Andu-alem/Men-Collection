@@ -7,7 +7,7 @@ export const getAllProducts = cache(async (page:string = '1', name:string|undefi
         const prisma = new PrismaClient()
         let products = []
         let totalProducts = 0
-        const limit = 10
+        const limit = 12
         const currentPage = (Number.isNaN(page) || parseInt(page) < 1) ? 1 : parseInt(page)
         const offset = (currentPage-1) * limit
 
@@ -61,7 +61,7 @@ export const getAllProducts = cache(async (page:string = '1', name:string|undefi
             totalProducts = await prisma.product.count()
         }
 
-        const totalPages = Math.ceil(totalProducts/10)
+        const totalPages = Math.ceil(totalProducts/limit)
         const hasNext = currentPage < totalPages
         const hasPrev = currentPage > 1
 
