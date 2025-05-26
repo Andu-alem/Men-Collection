@@ -8,7 +8,7 @@ const WatchSection = () => {
 
     return (
         <div className="w-[90%] sm:w-10/12 mx-auto h-screen sm:h-[120vh] flex flex-col-reverse sm:flex-row justify-center sm:justify-evenly items-center">
-            <TextAnimate className="text-orange-500 text-[30px] md:text-[47px] font-semibold sm:w-1/2" animate="scaleUp" by="word">
+            <TextAnimate className="text-orange-500 text-[30px] md:text-[47px] font-semibold sm:w-1/2 text-center sm:text-left" animate="scaleUp" by="word">
                 Count your blessing with our lexury watches
             </TextAnimate>
             <motion.div 
