@@ -23,8 +23,8 @@ export default function Layout({ children }:{ children:React.ReactNode }) {
     
     if (!isAccessGranted) {
         return (
-            <div className="w-screen h-screen flex justify-center items-center">
-                <p className="text-lg font-bold text-zinc-700">Loading....</p>
+            <div className="w-screen h-screen flex justify-center items-center dark:bg-zinc-900">
+                <p className="text-lg font-bold text-zinc-700 dark:text-zinc-100">Loading....</p>
             </div>
         )
     }
