@@ -1,10 +1,9 @@
 'use server'
 import { cache } from "react"
-import { PrismaClient } from "@prisma/client"
+import prisma from "./prisma"
 
 export const getAllProducts = cache(async (page:string = '1', name:string|undefined=undefined) => {
     try {
-        const prisma = new PrismaClient()
         let products = []
         let totalProducts = 0
         const limit = 12
@@ -84,7 +83,6 @@ export const getAllProducts = cache(async (page:string = '1', name:string|undefi
 
 export const getProductById = cache(async (id:string) => {
     try {
-        const prisma = new PrismaClient()
         const product = await prisma.product.findFirstOrThrow({
             where: {
                 id: parseInt(id)
@@ -103,7 +101,6 @@ export const getProductById = cache(async (id:string) => {
 
 export const getProductsByCategory = cache(async (id:string) => {
     try {
-        const prisma = new PrismaClient()
         const category = await prisma.category.findFirstOrThrow({
             where: {
                 id: parseInt(id)
@@ -135,7 +132,6 @@ export const getProductsByCategory = cache(async (id:string) => {
 
 export const getAllCategories = async () => {
     try {
-        const prisma = new PrismaClient()
         const categories = await prisma.category.findMany()
         return {
             categories: categories
