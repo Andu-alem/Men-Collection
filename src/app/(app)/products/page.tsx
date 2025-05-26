@@ -19,7 +19,7 @@ export default async function Page({ searchParams }:{ searchParams:Promise<Searc
                     <div>No products found</div>
                 ) : (
                     <>
-                        <div className="w-full grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-5 lg:gap-7 px-4 xl:px-10">
+                        <div className="w-full grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-5 md:gap-y-10 px-4 xl:px-10">
                             {
                                 products?.map((product:Product, index:number) => (
                                     <ProductCard product={ product } key={ index } />
