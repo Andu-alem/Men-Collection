@@ -15,6 +15,7 @@ import { ChevronDown } from "lucide-react"
 import Link from "next/link"
 import AddCategory from "./AddCategory"
 import AdminSidebarHeader from "./AdminSidebarHeader"
+import { Category } from "@/lib/types"
 
 const AdminSidebar = async () => {
     const { categories } = await getAllCategories()
@@ -71,7 +72,7 @@ const AdminSidebar = async () => {
                             <SidebarGroupContent>
                                 <SidebarMenu>
                                     {
-                                        categories?.map((category:any) => (
+                                        categories?.map((category:Category) => (
                                             <SidebarMenuItem key={ category.id }>
                                                 <SidebarMenuButton className="text-[17px]">{ category.name }</SidebarMenuButton>
                                             </SidebarMenuItem>
