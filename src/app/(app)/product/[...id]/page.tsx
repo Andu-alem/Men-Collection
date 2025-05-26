@@ -7,15 +7,15 @@ import {
 import { getProductById } from '@/lib/queries'
 import { Suspense } from 'react'
 import RelatedProducts from '@/components/RelatedProducts'
-import { Metadata, ResolvingMetadata } from 'next'
+import { Metadata } from 'next'
 
 interface Params {
     id: string[]
 }
 
-export async function generateMetadata({ params }:{ params:Promise<Params> }, parent:ResolvingMetadata):Promise<Metadata> {
+export async function generateMetadata({ params }:{ params:Promise<Params> }):Promise<Metadata> {
     const { id } = await params
-    const { error, product } = await getProductById(id[0])
+    const { product } = await getProductById(id[0])
 
     return {
         title: product?.name,
