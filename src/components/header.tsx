@@ -19,7 +19,7 @@ export default function Header() {
     const router = useRouter()
 
     return (
-        <div className="z-50 sticky top-0 w-full p-2 flex flex-col gap-3 bg-white dark:bg-zinc-900 pt-4 pb-2 px-5 border-b border-zinc-300">
+        <div className="z-50 sticky top-0 w-full p-2 flex flex-col gap-3 bg-white dark:bg-zinc-900 pt-4 pb-2 px-5">
             <div className="flex flex justify-between items-center">
                 <div className="flex items-center gap-4">
                     {
