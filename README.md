@@ -123,13 +123,7 @@ Follow these steps to set up the project locally:
 
 ## Screenshots
 
-Include screenshots such as:
-
--   Product catalog page.
--   Detailed product view.
--   Admin dashboard for managing products and orders.
-
-![Product Catalog](public/screenshoots/products.PNG)
+![Product Catalog](public/screenshoots/products.png)
 
 ## Contributing
 
