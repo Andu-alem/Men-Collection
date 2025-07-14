@@ -1,125 +1,95 @@
-# Classic Men's Collection
+# 🕴️ Classic Men's Collection – E-commerce Platform
 
-An elegant and modern **e-commerce platform** tailored for showcasing and selling high-quality men's fashion. This platform combines a sleek design with robust functionality, offering a seamless shopping experience.
+An elegant and modern **men's fashion e-commerce platform** built with **Next.js, Tailwind CSS, and Prisma**, designed to showcase and manage high-quality men's fashion products with a **clean, responsive user experience**.
 
-## Features
-
-### **User Features**
-
--   **Product Catalog**:
-    -   Explore a variety of men's clothing categories (e.g., suits, shirts, accessories).
-    -   Advanced filters for size, price, color, and style.
--   **Product Details**:
-    -   High-resolution images, detailed descriptions, and pricing.
--   **Shopping Cart**:
-    -   Add/remove items and update quantities.
--   **Secure Checkout**:
-    -   Multiple payment options and order confirmation.
--   **User Authentication**:
-    -   Login, registration, and order history tracking.
-
-### **Admin Features**
-
--   **Product Management**:
-    -   Add, edit, and delete products with category assignments.
--   **Order Management**:
-    -   View, update, and track customer orders.
--   **Dashboard**:
-    -   Overview of sales, inventory, and user activity.
-
-### **Additional Features**
-
--   **Responsive Design**:
-    -   Optimized for desktop, tablet, and mobile devices.
--   **SEO-Optimized**:
-    -   Ensures visibility in search engines.
--   **Performance and Security**:
-    -   Fast load times and secure data handling.
+This platform allows **browsing products, placing orders (without payment integration), and admin management of products** with secure authentication using **Better-Auth**.
 
 ---
 
-## Tech Stack
+## 🚀 Features
 
-### **Frontend**
+### 🛍️ User Features
 
--   **Next.js**: Fast and dynamic React-based framework for the UI.
--   **TailwindCSS**: Utility-first styling for responsiveness and clean design.
+* **Product Catalog** – Browse men's fashion categories (suits, shirts, accessories) with filtering.
+* **Product Details** – View high-resolution images, descriptions, and prices.
+* **Order Placement** – Add products to the cart and place orders (no payment integration yet).
+* **Authentication** – Secure signup and login using Better-Auth.
+* **Responsive Design** – Optimized for desktop, tablet, and mobile devices.
 
-### **Backend**
+### 🛠️ Admin Features
 
--   **Strapi**: Headless CMS for efficient content management and API creation.
--   **Cloudinary**: Media storage and delivery for high-quality product images.
-
-### **Database**
-
--   **MongoDB**: Flexible NoSQL database for storing products, users, and orders.
-
-### **Deployment**
-
--   **Render**: Cloud hosting platform for scalable deployments.
--   **Docker**: Containerized environment for seamless hosting.
+* **Product Management** – Add, edit, and delete products with images and category assignment.
+* **Dashboard View** – Track and manage product listings and orders.
 
 ---
 
-## Installation
+## 💡 Tech Stack
 
-Follow these steps to set up the project locally:
+* **Frontend:** Next.js, React, Tailwind CSS, Shadcn/UI
+* **State Management:** Zustand
+* **Backend:** Next.js App Router API Routes
+* **Auth:** Better-Auth
+* **Database:** PostgreSQL (via Neon) with Prisma ORM
+* **Storage:** Vercel Blob Storage for product images
+* **Deployment:** Vercel
 
-1.  **Clone the repository**:
+---
 
-    ```bash
-    git clone [https://github.com/Andu-alem/classic-mens-collection.git](https://github.com/Andu-alem/classic-mens-collection.git)
-    cd classic-mens-collection
-    ```
+## 📸 Live Preview
 
-2.  **Install dependencies**:
+[🌐 Visit the Live Site](https://mencollection.vercel.app/)
 
-    For the frontend:
+---
 
-    ```bash
-    cd frontend
-    npm install
-    ```
+## ⚙️ Installation
 
-    For the backend:
+### 1️⃣ Clone the Repository
 
-    ```bash
-    cd backend
-    npm install
-    ```
+```bash
+git clone https://github.com/Andu-alem/Men-collection.git
+cd Men-collection
+```
 
-3.  **Set up environment variables**:
+### 2️⃣ Install Dependencies
 
-    Create a `.env` file in the `backend` directory.
-    Add your variables for Strapi and Cloudinary:
+```bash
+pnpm install
+```
 
-    ```
-    STRAPI_URL=<your-strapi-url>
-    CLOUDINARY_NAME=<your-cloudinary-name>
-    CLOUDINARY_KEY=<your-cloudinary-key>
-    CLOUDINARY_SECRET=<your-cloudinary-secret>
-    MONGO_URI=<your-mongodb-uri>
-    PORT=5000
-    ```
+### 3️⃣ Set Up Environment Variables
 
-4.  **Run the application**:
+Create a `.env.local` file in the root:
 
-    Start the backend server:
+```
+DATABASE_URL=<your-neon-postgres-url>
+BLOB_READ_WRITE_TOKEN=<your-vercel-blob-token>
+NEXT_PUBLIC_BLOB_READ_TOKEN=<your-vercel-blob-read-token>
+NEXTAUTH_SECRET=<your-nextauth-secret>
+NEXTAUTH_URL=<your-app-url>
+```
 
-    ```bash
-    npm run start
-    ```
+*(Add other Better-Auth and required env variables as applicable.)*
 
-    Start the frontend development server:
+---
 
-    ```bash
-    npm run start
-    ```
+### 4️⃣ Run the Development Server
 
-5.  **Access the application**:
+```bash
+pnpm dev
+```
 
-    Frontend: `http://localhost:3000`
-    Backend (Strapi): `http://localhost:1337`
+Access the app at: [http://localhost:3000](http://localhost:3000)
+
+---
+
+## 🧩 Roadmap
+
+* [x] Product catalog with filtering
+* [x] Admin product CRUD management
+* [x] Order placement functionality
+* [x] Authentication with Better-Auth
+* [ ] Payment integration
+* [ ] User order history UI
 
 ## Screenshots
 
@@ -133,6 +103,23 @@ Contributions are welcome! To contribute:
 2.  Create a feature branch (`git checkout -b feature-name`).
 3.  Submit a pull request.
 
-## License
+---
 
-This project is licensed under the MIT License.
+## 📜 License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+## 📫 Contact
+
+* **Portfolio:** [andudev.netlify.app](https://andudev.netlify.app)
+* **Email:** [Your Email](mailto:andualem.fereja12@gmail.com)
+
+---
+
+### 🙏 Thank you for visiting!
+
+Feel free to explore the code, give feedback, or reach out if you’d like to collaborate on building impactful projects together.
+
+---
